@@ -11,6 +11,8 @@ public class EnemyMovement : MonoBehaviour {
 	private Rigidbody goat;
 	public float speed;
 	public Vector3 direction;
+	private GameObject player;
+	private EnemyDamage Dang;
     /*
      * The Start function:
      * Use GetComponent to get the rigidbody reference
@@ -19,9 +21,13 @@ public class EnemyMovement : MonoBehaviour {
      */
 	void Start ()
 	{
+		player = GameObject.FindGameObjectWithTag ("Player");
+		Dang = GetComponent<EnemyDamage> ();
 		goat = GetComponent<Rigidbody>();
-		direction = new Vector3(0, Random.Range(0, 360), 0);
-		transform.eulerAngles = direction;
+		if (Dang.Type == EnemyDamage.Badguys.Enemy) {
+			direction = new Vector3(0, Random.Range(0, 360), 0);
+			transform.eulerAngles = direction;
+		}
 	}
 	
     /*
@@ -32,6 +38,12 @@ public class EnemyMovement : MonoBehaviour {
 	void Update ()
 	{
 		goat.AddRelativeForce (transform.forward * speed);
+		if (Dang.Type == EnemyDamage.Badguys.Enemy2) {
+			transform.LookAt (player.transform);
+		}
+		if (Dang.Type == EnemyDamage.Badguys.Enemy3) {
+			transform.LookAt (player.transform);
+		}
 	}
     /* **************Explanation and Hints************
      * Rigidbody - When attached to a GameObject it adds things like gravity as well as other physics properties to the GameObject.

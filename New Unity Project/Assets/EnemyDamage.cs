@@ -9,6 +9,16 @@ public class EnemyDamage : MonoBehaviour
      * If the tag of the Collision parameter equals the KillZone tag then
      *      Destroy this GameObject
      */
+	public enum Badguys {Enemy, Enemy2, Enemy3};
+	public Badguys Type;
+	public int Health = 1;
+
+	public void Damage (int Evil)
+	{
+		Health -= Evil;
+		if(Health <= 0)
+		Destroy (gameObject);
+	}
 
 
 	void OnCollisionEnter(Collision Hit)
@@ -17,6 +27,7 @@ public class EnemyDamage : MonoBehaviour
 			Destroy (gameObject);
 		}
 	}
+		
     /* **************Explanation and Hints************
      * OnCollisionEnter - This is a special Unity function. It runs whenever a GameObject with rigidbody attached to it
      *                    runs into another object. In this script we are using it to detect when the enemy runs into

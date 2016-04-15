@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour {
      */
 	void Start ()
 	{
-		invokingdelay = 15;
+		invokingdelay = 5;
 		InvokeRepeating ("Sarah", 0, invokingdelay);
 	}
     /*
